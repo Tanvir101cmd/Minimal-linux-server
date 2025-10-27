@@ -222,7 +222,7 @@ To make sure its up and running
 
 On Ubuntu (Systemd):
 ```bash
-sudo systemctl enable ssh
+sudo systemctl enable --now zram-config
 ```
 
 On Void Linux (Runit):
