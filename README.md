@@ -238,5 +238,4 @@ sudo ln -s /etc/sv/zramen /var/service/
 
 ### Final Thoughts
 
-This setup forms the foundation of a secure, functional server environment.  
-From here, you can build on top of it — hosting websites, automating backups, or experimenting with network services.
+This setup forms the very basic setup for of a secure, functional server environment. My plan it to make it even more useful by using docker or making it a VPN or something similar, rather than than just a server to backup mmy files.
