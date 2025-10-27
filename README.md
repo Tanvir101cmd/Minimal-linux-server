@@ -9,9 +9,13 @@ This guide documents my personal setup process for building a simple yet secure 
 Add this line to your `/etc/fstab` to automatically mount your NTFS drive at boot:
 
 ```bash
-UUID=PARTITION-UID(see using lsblk -f) /mnt/Files ntfs-3g defaults,uid=1000,gid=1000,umask=022 0 0
+UUID=PARTITION-UID /mnt/Files ntfs-3g defaults,uid=1000,gid=1000,umask=022 0 0
 ```
 
+To see the partition uid:
+``` bash
+lsblk -f
+```
 ---
 
 ## 🔐 Starting with SSH
