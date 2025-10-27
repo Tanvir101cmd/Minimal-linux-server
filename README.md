@@ -4,6 +4,19 @@ This guide documents my personal setup process for building a simple yet secure 
 
 ---
 
+## 🔄 First make sure the system is up to date
+
+In Ubuntu:
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+In Void Linux:
+```bash
+sudo xbps-install -Syyu
+```
+Note: Some updates may require a reboot after completion.
+
 ## 📂 Mounting NTFS Drives on Boot
 
 Add this line to your `/etc/fstab` to automatically mount your NTFS drive at boot:
