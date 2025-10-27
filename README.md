@@ -46,10 +46,10 @@ sudo xbps-install -Syy openssh
 
 ### Starting the SSH Service:
 ```bash
-# For systemd (Ubuntu, Debian, Fedora etc):
+# For systemd (Ubuntu, Debian, Fedora etc)
 sudo systemctl enable --now ssh
 
-# For runit (Void Linux, Artix etc):
+# For runit (Void Linux, Artix etc)
 sudo ln -s /etc/sv/ssh /var/service/ssh
 ```
 
@@ -135,10 +135,10 @@ sudo xbps-install -S tailscale
 
 Enable Tailscale on boot:
 ```bash
-# For systemd:
+# For systemd
 sudo systemctl enable --now tailscaled
 
-# For runit:
+# For runit
 sudo ln -s /etc/sv/tailscaled /var/service/
 ```
 
