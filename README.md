@@ -1,6 +1,6 @@
 # Server-Setup
 
-  This guide documents my personal setup process for building a simple yet secure home or remote server — starting from mounting drives to configuring SSH and network protection tools like **fail2ban** and **UFW**.
+This guide documents my personal setup process for building a simple yet secure home or remote server — starting from mounting drives to configuring SSH and network protection tools like **fail2ban** and **UFW**.
 
 ---
 
@@ -130,7 +130,7 @@ Then allow essential ports:
 sudo ufw allow ssh         # Allow default SSH port 22
 sudo ufw allow 80/tcp      # HTTP traffic
 sudo ufw allow 443/tcp     # HTTPS traffic
-sudo ufw allow 2222/tcp    # Custom SSH port (my setup)
+sudo ufw limit 2222/tcp    # Rate-limits connections to port 2222, good to prevent bruteforce attacks
 ```
 
 Enable UFW:
@@ -141,10 +141,7 @@ sudo ufw status verbose
 
 ---
 
-### 🧠 Final Thoughts
+### Final Thoughts
 
 This setup forms the foundation of a secure, functional server environment.  
 From here, you can build on top of it — hosting websites, automating backups, or experimenting with network services.
-
-> *"A server is more than a machine; it’s a reflection of how you think about trust, security, and control."*
-
