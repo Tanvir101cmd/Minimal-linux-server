@@ -44,7 +44,7 @@ sudo systemctl enable --now ssh
 
 For **Void Linux (Runit)**:
 ```bash
-sudo ln -s /etc/sv/ssh /var/service/sshd
+sudo ln -s /etc/sv/ssh /var/service/ssh
 ```
 
 ### Hardening SSH Configuration
@@ -138,7 +138,7 @@ To get private static ip with tailscale:
 ```bash
 tailscale up
 ```
-It will how or open up a link on browser to open. Go there and sign in with an account to get the private ip. Connect your other devices with the same account to establish connection between devices securely.
+It will show or open a link in your browser. Go there and sign in with your account to get the private IP. Connect your other devices with the same account to establish connection between devices securely.
 
 To get tailscale ip:
 ```bash
@@ -176,7 +176,7 @@ sudo ufw default allow outgoing
 Then allow essential ports:
 
 ```bash
-sudo ufw allow ssh         # Allow default SSH port 22 (Not necessary if your ssh port is different)
+sudo ufw allow ssh         # AIf you’ve changed your SSH port (e.g. 2222), you don’t need to allow port 22.
 sudo ufw allow 80/tcp      # HTTP traffic
 sudo ufw allow 443/tcp     # HTTPS traffic
 sudo ufw limit 2222/tcp    # Rate-limits connections to port 2222, good to prevent bruteforce attacks
@@ -187,7 +187,7 @@ Enable UFW:
 sudo ufw enable
 ```
 
-To see if ufw is working as expected
+To verify UFW status and active rules:
 ```bash
 sudo ufw status verbose
 ```
