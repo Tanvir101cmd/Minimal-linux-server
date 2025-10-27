@@ -88,6 +88,10 @@ It’s good practice to use **unique keys for different servers** — like using
 ```bash
 ssh-keygen -f ~/.ssh/filename -C "comment"
 ```
+Sometimes users run into “UNPROTECTED PRIVATE KEY FILE” errors. You can simply fix it by:
+```bash
+chmod 600 ~/.ssh/filename
+```
 
 ### Find Server IP (run this on the server)
 ```bash
