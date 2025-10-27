@@ -205,7 +205,7 @@ To verify UFW status and active rules:
 sudo ufw status verbose
 ```
 
-## Configure Zram (Optional)
+## 💾 Configure Zram (Optional)
 Zram creates compressed swap space in RAM instead of using slow disk storage. It's much faster than traditional swap and doesn't wear out your SSD/HDD.
 
 To install zram on Ubuntu:
