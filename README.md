@@ -188,6 +188,15 @@ bantime  = 1h
 findtime = 10m
 ```
 
+After editing, restart the fail2ban service to reload the config file:
+```bash
+# For systemd
+sudo systemctl restart fail2ban
+
+# For runit
+sudo sv restart fail2ban
+```
+
 ---
 
 ## 🔥 UFW (Uncomplicated Firewall)
@@ -243,4 +252,4 @@ sudo ln -s /etc/sv/zramen /var/service/
 
 ### Final Thoughts
 
-This setup forms the very basic setup for of a secure, functional server environment. My plan it to make it even more useful by using docker or making it a VPN or something similar, rather than than just a server to backup my files.
+This setup forms a very basic setup for of a secure, functional server environment. My plan is to make it even more useful by using docker or making it a VPN or something similar, rather than just a server to backup my files.
