@@ -17,8 +17,14 @@ Note: Some updates may require a reboot after completion.
 
 ## 📂 Mounting NTFS Drives on Boot
 
-Add this line to your `/etc/fstab` to automatically mount your NTFS drive at boot:
+I have some NTFS drives that I keep my backups on. 
 
+First make a empty directory that will be used to mount the NTFS drive
+```bash
+sudo mkdir -p /mnt/Files
+```
+
+Add this line to your `/etc/fstab` to automatically mount your NTFS drive at boot:
 ```bash
 UUID=PARTITION-UID /mnt/Files ntfs-3g defaults,uid=1000,gid=1000,umask=022 0 0
 ```
@@ -68,6 +74,15 @@ PermitRootLogin no
 PasswordAuthentication no
 PubkeyAuthentication yes
 KbdInteractiveAuthentication no
+```
+
+Restart the SSH service to reload the config file
+```bash
+# For systemd
+sudo systemctl restart ssh
+
+# For runit
+sudo sv restart ssh
 ```
 
 ---
@@ -153,6 +168,52 @@ To get tailscale ip:
 tailscale ip
 ```
 
+Another thing about tailscale is that Tailscale security keys (Node Keys) for user-authenticated devices expire by default, typically after 180 days. So It will disconnect your unattended server.
+
+To prevent future lockouts:
+
+1️⃣ Log into the [Tailscale Admin Console](https://login.tailscale.com/admin/machines) on your local machine.
+
+2️⃣ Navigate to the Machines tab.
+
+3️⃣ Find your newly connected server.
+
+4️⃣ Click on your server and select Disable Key Expiry.
+
+If your key does expire, you must use a non-Tailscale connection (like a local LAN IP) to run 
+```bash sudo tailscale up --force-reauth ``` and re-authenticate.
+
+---
+
+
+## 🔥 UFW (Uncomplicated Firewall)
+
+Start with a safe default configuration:
+
+```bash
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+```
+
+Then allow essential ports:
+
+```bash
+sudo ufw allow ssh         # If you’ve changed your SSH port (e.g. 2222), you don’t need to allow port 22.
+sudo ufw allow 80/tcp      # HTTP traffic
+sudo ufw allow 443/tcp     # HTTPS traffic
+sudo ufw limit 2222/tcp    # Rate-limits connections to port 2222, good to prevent bruteforce attacks
+```
+
+Enable UFW:
+```bash
+sudo ufw enable
+```
+
+To verify UFW status and active rules:
+```bash
+sudo ufw status verbose
+```
+
 ---
 
 ## 🛡️ fail2ban — Brute Force Protection
@@ -198,34 +259,6 @@ sudo sv restart fail2ban
 ```
 
 ---
-
-## 🔥 UFW (Uncomplicated Firewall)
-
-Start with a safe default configuration:
-
-```bash
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-```
-
-Then allow essential ports:
-
-```bash
-sudo ufw allow ssh         # AIf you’ve changed your SSH port (e.g. 2222), you don’t need to allow port 22.
-sudo ufw allow 80/tcp      # HTTP traffic
-sudo ufw allow 443/tcp     # HTTPS traffic
-sudo ufw limit 2222/tcp    # Rate-limits connections to port 2222, good to prevent bruteforce attacks
-```
-
-Enable UFW:
-```bash
-sudo ufw enable
-```
-
-To verify UFW status and active rules:
-```bash
-sudo ufw status verbose
-```
 
 ## 💾 Configure Zram (Optional)
 Zram creates compressed swap space in RAM instead of using slow disk storage. It's much faster than traditional swap and doesn't use your SSD/HDD.
