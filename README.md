@@ -136,6 +136,10 @@ sudo ufw limit 2222/tcp    # Rate-limits connections to port 2222, good to preve
 Enable UFW:
 ```bash
 sudo ufw enable
+```
+
+To see if ufw is working as expected
+```bash
 sudo ufw status verbose
 ```
 
