@@ -49,7 +49,7 @@ sudo ln -s /etc/sv/ssh /var/service/sshd
 
 ### Hardening SSH Configuration
 
-It's a good idea to backup the default config file before making any changes, make the backup in this case via:
+It's a good idea to backup the default config file before making any changes, make the backup in this case by:
 ```bash
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
 ```
@@ -76,14 +76,19 @@ It’s good practice to use **unique keys for different servers** — like using
 ssh-keygen -f ~/.ssh/filename -C "comment"
 ```
 
+### Find Server IP (run this on the server)
+```bash
+ip addr show
+```
+
 ### Copy your public key to the server
 ```bash
-ssh-copy-id -i ~/.ssh/filename username@192.168.0.X
+ssh-copy-id -i ~/.ssh/filename username@<IP_ADDRESS_or_HOSTNAME>
 ```
 
 ### Connect to the server
 ```bash
-ssh -p 2222 username@192.168.0.X
+ssh -p 2222 username@<IP_ADDRESS_or_HOSTNAME>
 ```
 
 ### Simplify with SSH Config
@@ -92,7 +97,7 @@ You can make connections effortless by creating a config file at `~/.ssh/config`
 
 ```ini
 Host servername
-    HostName XXX.XXX.X.X
+    HostName <IP_ADDRESS_or_HOSTNAME>
     IdentityFile ~/.ssh/filename
     User Username
     Port 2222
@@ -104,6 +109,41 @@ Host servername
 
 **Tailscale** is a mesh VPN that makes your SSH server accessible **from anywhere with internet**.  
 It assigns private static IPs to devices, allowing secure and direct communication without port forwarding.
+
+First, install tailscale in Ubuntu by: 
+```bash
+curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+
+sudo apt-get update
+sudo apt-get install tailscale
+```
+
+Or in Void Linux:
+```bash
+sudo xbps-install -S tailscale
+```
+
+To make tailscale run on boot:
+```bash
+sudo systemctl enable --now tailscaled
+```
+
+Or in Void Linux:
+```bash
+sudo ln -s /etc/sv/tailscaled /var/service/
+```
+
+To get private static ip with tailscale:
+```bash
+tailscale up
+```
+It will how or open up a link on browser to open. Go there and sign in with an account to get the private ip. Connect your other devices with the same account to establish connection between devices securely.
+
+To get tailscale ip:
+```bash
+tailscale ip
+```
 
 ---
 
@@ -136,7 +176,7 @@ sudo ufw default allow outgoing
 Then allow essential ports:
 
 ```bash
-sudo ufw allow ssh         # Allow default SSH port 22
+sudo ufw allow ssh         # Allow default SSH port 22 (Not necessary if your ssh port is different)
 sudo ufw allow 80/tcp      # HTTP traffic
 sudo ufw allow 443/tcp     # HTTPS traffic
 sudo ufw limit 2222/tcp    # Rate-limits connections to port 2222, good to prevent bruteforce attacks
