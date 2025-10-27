@@ -7,10 +7,10 @@ This guide documents my personal setup process for building a simple yet secure 
 ## 🔄 First make sure the system is up to date
 ```bash
 # Ubuntu/Debian
-sudo apt install openssh
+sudo apt update && sudo apt upgrade -y
 
 # Void Linux
-sudo xbps-install -Syy openssh
+sudo xbps-install -Syy
 ```
 
 Note: Some updates may require a reboot after completion.
@@ -41,7 +41,7 @@ Remember, SSH follows a **server–client model**.
 sudo apt install openssh
 
 # Void Linux
-sudo xbps-install -Syy openssh
+sudo xbps-install -S openssh
 ```
 
 ### Starting the SSH Service:
@@ -50,7 +50,7 @@ sudo xbps-install -Syy openssh
 sudo systemctl enable --now ssh
 
 # For runit (Void Linux, Artix etc)
-sudo ln -s /etc/sv/ssh /var/service/ssh
+sudo ln -s /etc/sv/ssh /var/service/
 ```
 
 ### Hardening SSH Configuration
@@ -157,7 +157,25 @@ tailscale ip
 
 ## 🛡️ fail2ban — Brute Force Protection
 
-Create or edit the jail config for SSH at `/etc/fail2ban/jail.d/sshd.conf`:
+To install:
+```bash
+# Ubuntu/Debian
+sudo apt install fail2ban
+
+# Void Linux
+sudo xbps-install -S fail2ban
+```
+
+Start the service by:
+```bash
+# For systemd
+sudo systemctl enable --now fail2ban
+
+# For runit
+sudo ln -s /etc/sv/fail2ban /var/service/
+```
+
+Create or edit the jail config at `/etc/fail2ban/jail.d/sshd.conf`:
 
 ```ini
 [sshd]
@@ -212,7 +230,7 @@ sudo apt install zram-tools
 sudo xbps-install -S zramen
 ```
 
-To make sure its up and running:
+To start the service simply:
 ```bash
 # For systemd
 sudo systemctl enable --now zram-config
