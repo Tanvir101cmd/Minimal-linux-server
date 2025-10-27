@@ -5,16 +5,14 @@ This guide documents my personal setup process for building a simple yet secure 
 ---
 
 ## 🔄 First make sure the system is up to date
-
-In Ubuntu:
 ```bash
-sudo apt update && sudo apt upgrade -y
+# Ubuntu (APT)
+sudo apt install openssh
+
+# Void Linux (XBPS)
+sudo xbps-install -Syy openssh
 ```
 
-In Void Linux:
-```bash
-sudo xbps-install -Syyu
-```
 Note: Some updates may require a reboot after completion.
 
 ## 📂 Mounting NTFS Drives on Boot
@@ -38,25 +36,20 @@ Remember, SSH follows a **server–client model**.
 
 ### Installation
 
-For **Ubuntu**:
 ```bash
+# Ubuntu/Debian
 sudo apt install openssh
-```
 
-For **Void Linux**:
-```bash
+# Void Linux
 sudo xbps-install -Syy openssh
 ```
 
-### Starting the SSH Service
-
-For **Ubuntu (Systemd)**:
+### Starting the SSH Service:
 ```bash
+# For systemd (Ubuntu, Debian, Fedora etc.):
 sudo systemctl enable --now ssh
-```
 
-For **Void Linux (Runit)**:
-```bash
+# For runit (Void Linux):
 sudo ln -s /etc/sv/ssh /var/service/ssh
 ```
 
@@ -129,25 +122,23 @@ It assigns private static IPs to devices, allowing secure and direct communicati
 
 First, install tailscale in Ubuntu by: 
 ```bash
+#Ubuntu
 curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
 curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
 
 sudo apt-get update
 sudo apt-get install tailscale
-```
 
-Or in Void Linux:
-```bash
+# Void Linux
 sudo xbps-install -S tailscale
 ```
 
-To make tailscale run on boot:
+Enable Tailscale on boot:
 ```bash
+# For systemd:
 sudo systemctl enable --now tailscaled
-```
 
-Or in Void Linux:
-```bash
+# For runit:
 sudo ln -s /etc/sv/tailscaled /var/service/
 ```
 
@@ -210,27 +201,23 @@ sudo ufw status verbose
 ```
 
 ## 💾 Configure Zram (Optional)
-Zram creates compressed swap space in RAM instead of using slow disk storage. It's much faster than traditional swap and doesn't wear out your SSD/HDD.
+Zram creates compressed swap space in RAM instead of using slow disk storage. It's much faster than traditional swap and doesn't use your SSD/HDD.
 
-To install zram on Ubuntu:
+To install zram:
 ```bash
+# Ubuntu
 sudo apt install zram-tools
-```
 
-Or in Void Linux:
-```bash
+# Void Linux
 sudo xbps-install -S zramen
 ```
 
-To make sure its up and running
-
-On Ubuntu (Systemd):
+To make sure its up and running:
 ```bash
+# For systemd
 sudo systemctl enable --now zram-config
-```
 
-On Void Linux (Runit):
-```bash
+# For runit
 sudo ln -s /etc/sv/zramen /var/service/
 ```
 
