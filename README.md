@@ -49,6 +49,11 @@ sudo ln -s /etc/sv/ssh /var/service/sshd
 
 ### Hardening SSH Configuration
 
+It's a good idea to backup the default config file before making any changes, make the backup in this case via:
+```bash
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
+```
+
 Edit your SSH daemon config at `/etc/ssh/sshd_config`:
 
 ```ini
@@ -87,9 +92,9 @@ You can make connections effortless by creating a config file at `~/.ssh/config`
 
 ```ini
 Host servername
-    HostName 192.168.0.X
+    HostName XXX.XXX.X.X
     IdentityFile ~/.ssh/filename
-    User Tanvir
+    User Username
     Port 2222
 ```
 
