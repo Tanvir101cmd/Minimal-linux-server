@@ -6,10 +6,10 @@ This guide documents my personal setup process for building a simple yet secure 
 
 ## 🔄 First make sure the system is up to date
 ```bash
-# Ubuntu (APT)
+# Ubuntu/Debian
 sudo apt install openssh
 
-# Void Linux (XBPS)
+# Void Linux
 sudo xbps-install -Syy openssh
 ```
 
@@ -46,10 +46,10 @@ sudo xbps-install -Syy openssh
 
 ### Starting the SSH Service:
 ```bash
-# For systemd (Ubuntu, Debian, Fedora etc.):
+# For systemd (Ubuntu, Debian, Fedora etc):
 sudo systemctl enable --now ssh
 
-# For runit (Void Linux):
+# For runit (Void Linux, Artix etc):
 sudo ln -s /etc/sv/ssh /var/service/ssh
 ```
 
@@ -122,7 +122,7 @@ It assigns private static IPs to devices, allowing secure and direct communicati
 
 First, install tailscale in Ubuntu by: 
 ```bash
-#Ubuntu
+# Ubuntu
 curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
 curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
 
@@ -205,7 +205,7 @@ Zram creates compressed swap space in RAM instead of using slow disk storage. It
 
 To install zram:
 ```bash
-# Ubuntu
+# Ubuntu/Debian
 sudo apt install zram-tools
 
 # Void Linux
