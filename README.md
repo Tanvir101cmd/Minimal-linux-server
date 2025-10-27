@@ -205,6 +205,31 @@ To verify UFW status and active rules:
 sudo ufw status verbose
 ```
 
+## Configure Zram (Optional)
+Zram creates compressed swap space in RAM instead of using slow disk storage. It's much faster than traditional swap and doesn't wear out your SSD/HDD.
+
+To install zram on Ubuntu:
+```bash
+sudo apt install zram-tools
+```
+
+Or in Void Linux:
+```bash
+sudo xbps-install -S zramen
+```
+
+To make sure its up and running
+
+On Ubuntu (Systemd):
+```bash
+sudo systemctl enable ssh
+```
+
+On Void Linux (Runit):
+```bash
+sudo ln -s /etc/sv/zramen /var/service/
+```
+
 ---
 
 ### Final Thoughts
