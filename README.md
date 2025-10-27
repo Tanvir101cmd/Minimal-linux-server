@@ -168,9 +168,9 @@ To get tailscale ip:
 tailscale ip
 ```
 
-Another thing about tailscale is that Tailscale security keys (Node Keys) for user-authenticated devices expire by default, typically after 180 days. So It will disconnect your unattended server.
+Another thing about tailscale is that Tailscale security keys (Node Keys) for user-authenticated devices expire by default, typically after 180 days. So it will disconnect automatically from your unattended server.
 
-To prevent future lockouts:
+To prevent lockouts:
 
 1️⃣ Log into the [Tailscale Admin Console](https://login.tailscale.com/admin/machines) on your local machine.
 
