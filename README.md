@@ -15,26 +15,6 @@ sudo xbps-install -Syy
 
 Note: Some updates may require a reboot after completion.
 
-## 📂 Mounting NTFS Drives on Boot
-
-I have some NTFS drives that I keep my backups on. 
-
-First make a empty directory that will be used to mount the NTFS drive
-```bash
-sudo mkdir -p /mnt/Files
-```
-
-Add this line to your `/etc/fstab` to automatically mount your NTFS drive at boot:
-```bash
-UUID=PARTITION-UID /mnt/Files ntfs-3g defaults,uid=1000,gid=1000,umask=022 0 0
-```
-
-To see the partition uid:
-``` bash
-lsblk -f
-```
----
-
 ## 🔐 Starting with SSH
 
 All you need is a base system and **OpenSSH** to start.  
@@ -260,7 +240,29 @@ sudo sv restart fail2ban
 
 ---
 
-## 💾 Configure Zram (Optional)
+# Optional tweaks
+
+## 📂 Mounting NTFS Drives on Boot
+
+I have some NTFS drives that I keep my backups on. 
+
+First make a empty directory that will be used to mount the NTFS drive
+```bash
+sudo mkdir -p /mnt/Files
+```
+
+Add this line to your `/etc/fstab` to automatically mount your NTFS drive at boot:
+```bash
+UUID=PARTITION-UID /mnt/Files ntfs-3g defaults,uid=1000,gid=1000,umask=022 0 0
+```
+
+To see the partition uid:
+``` bash
+lsblk -f
+```
+---
+
+## 💾 Configure Zram
 Zram creates compressed swap space in RAM instead of using slow disk storage. It's much faster than traditional swap and doesn't use your SSD/HDD.
 
 To install zram:
