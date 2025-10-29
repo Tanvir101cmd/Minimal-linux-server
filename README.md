@@ -10,7 +10,7 @@ This guide documents my personal setup process for building a simple yet secure 
 sudo apt update && sudo apt upgrade -y
 
 # Void Linux
-sudo xbps-install -Syy
+sudo xbps-install -Su
 ```
 
 Note: Some updates may require a reboot after completion.
