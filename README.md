@@ -139,7 +139,7 @@ sudo ln -s /etc/sv/tailscaled /var/service/
 
 To get private static ip with tailscale:
 ```bash
-tailscale up
+sudo tailscale up
 ```
 It will show or open a link in your browser. Go there and sign in with your account to get the private IP. Connect your other devices with the same account to establish connection between devices securely.
 
