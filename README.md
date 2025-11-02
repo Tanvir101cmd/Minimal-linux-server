@@ -62,7 +62,7 @@ Restart the SSH service to reload the config file
 sudo systemctl restart ssh
 
 # For runit
-sudo sv restart ssh
+sudo sv restart sshd
 ```
 
 ---
