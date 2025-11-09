@@ -88,7 +88,7 @@ ip addr show
 
 ### Copy your public key to the server
 ```bash
-ssh-copy-id -i ~/.ssh/filename username@<IP_ADDRESS_or_HOSTNAME>
+ssh-copy-id -i ~/.ssh/filename -p 2222 username@<IP_ADDRESS_or_HOSTNAME>
 ```
 
 ### Connect to the server
@@ -115,14 +115,10 @@ Host servername
 **Tailscale** is a mesh VPN that makes your SSH server accessible **from anywhere with internet**.  
 It assigns private static IPs to devices, allowing secure and direct communication without port forwarding.
 
-First, install tailscale in Ubuntu by: 
+First, install tailscale by: 
 ```bash
 # Ubuntu
-curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
-curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/noble.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
-
-sudo apt-get update
-sudo apt-get install tailscale
+curl -fsSL https://tailscale.com/install.sh | sh
 
 # Void Linux
 sudo xbps-install -S tailscale
