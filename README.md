@@ -256,6 +256,11 @@ To see the partition uid:
 ``` bash
 lsblk -f
 ```
+
+Reload the new fstab by:
+``` bash
+sudo systemctl daemon-reload
+```
 ---
 
 ## 💾 Configure Zram
