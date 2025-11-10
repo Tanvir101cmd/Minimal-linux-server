@@ -275,10 +275,10 @@ sudo apt install zram-tools
 sudo xbps-install -S zramen
 ```
 
-To start the service simply:
+To start the service simply (if not done already):
 ```bash
 # For systemd
-sudo systemctl enable --now zram-config
+sudo systemctl enable --now zramswap
 
 # For runit
 sudo ln -s /etc/sv/zramen /var/service/
