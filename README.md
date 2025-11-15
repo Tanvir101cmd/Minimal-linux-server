@@ -1,6 +1,6 @@
 # Server-Setup
 
-This guide documents my personal setup process for building a simple yet secure home or remote server — starting from mounting drives to configuring SSH and network protection tools like **fail2ban** and **UFW**.
+This guide documents my personal setup process for building a simple yet secure home or remote server, starting from mounting drives to configuring SSH and network protection tools like **fail2ban** and **UFW**.
 
 ---
 
@@ -70,7 +70,7 @@ sudo sv restart sshd
 ## 🧩 Setting Up SSH Keys (Client-Side)
 
 SSH keys are the backbone of secure connections.  
-It’s good practice to use **unique keys for different servers** — like using different keys for different doors.
+It’s good practice to use **unique keys for different servers,** like using different keys for different doors.
 
 ### Generate a new SSH key
 ```bash
@@ -110,7 +110,7 @@ Host servername
 
 ---
 
-## 🌐 Tailscale — Access From Anywhere
+## 🌐 Tailscale (To access from anywhere)
 
 **Tailscale** is a mesh VPN that makes your SSH server accessible **from anywhere with internet**.  
 It assigns private static IPs to devices, allowing secure and direct communication without port forwarding.
@@ -192,7 +192,7 @@ sudo ufw status verbose
 
 ---
 
-## 🛡️ fail2ban — Brute Force Protection
+## 🛡️ fail2ban (Brute Force Protection)
 
 To install:
 ```bash
