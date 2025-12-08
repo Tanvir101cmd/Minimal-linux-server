@@ -56,10 +56,11 @@ PubkeyAuthentication yes
 KbdInteractiveAuthentication no
 ```
 
-Restart the SSH service to reload the config file
+Reload the config file via:
 ```bash
-# For systemd
-sudo systemctl restart ssh
+# For systemd (won't need to restart the ssh server) 
+sudo systemctl daemon-reload
+sudo systemctl restart ssh.socket
 
 # For runit
 sudo sv restart sshd
