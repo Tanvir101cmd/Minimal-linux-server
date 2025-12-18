@@ -250,7 +250,7 @@ sudo mkdir -p /mnt/Files
 
 Add this line to your `/etc/fstab` to automatically mount your NTFS drive at boot:
 ```bash
-UUID=PARTITION-UID /mnt/Files ntfs-3g defaults,uid=1000,gid=1000,umask=022 0 0
+UUID=01D858C886F164A0 /mnt/Files ntfs-3g defaults,uid=1000,gid=1000,umask=022,windows_names,big_writes 0 0
 ```
 
 To see the partition uid:
