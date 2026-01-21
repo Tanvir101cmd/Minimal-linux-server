@@ -158,7 +158,7 @@ To prevent lockouts:
 4️⃣ Click on your server and select Disable Key Expiry.
 
 If your key does expire, you must use a non-Tailscale connection (like a local LAN IP) to run 
-```bash sudo tailscale up --force-reauth ``` and re-authenticate.
+```sudo tailscale up --force-reauth ``` and re-authenticate.
 
 ---
 
