@@ -4,7 +4,7 @@ This guide documents my personal setup process for building a simple yet secure 
 
 ---
 
-## 🔄 First make sure the system is up to date
+## First make sure the system is up to date
 ```bash
 # Ubuntu/Debian
 sudo apt update && sudo apt upgrade -y
@@ -15,7 +15,7 @@ sudo xbps-install -Su
 
 Note: Some updates may require a reboot after completion.
 
-## 🔐 Starting with SSH
+## Starting with SSH
 
 All you need is a base system and **OpenSSH** to start.  
 Remember, SSH follows a **server–client model**.
@@ -68,7 +68,7 @@ sudo sv restart sshd
 
 ---
 
-## 🧩 Setting Up SSH Keys (Client-Side)
+## Setting Up SSH Keys (Client-Side)
 
 SSH keys are the backbone of secure connections.  
 It’s good practice to use **unique keys for different servers,** like using different keys for different doors.
@@ -111,7 +111,7 @@ Host servername
 
 ---
 
-## 🌐 Tailscale (To access from anywhere)
+## Tailscale (To access from anywhere)
 
 **Tailscale** is a mesh VPN that makes your SSH server accessible **from anywhere with internet**.  
 It assigns private static IPs to devices, allowing secure and direct communication without port forwarding.
@@ -163,7 +163,7 @@ If your key does expire, you must use a non-Tailscale connection (like a local L
 ---
 
 
-## 🔥 UFW (Uncomplicated Firewall)
+## UFW (Uncomplicated Firewall)
 
 Start with a safe default configuration:
 
@@ -193,7 +193,7 @@ sudo ufw status verbose
 
 ---
 
-## 🛡️ fail2ban (Brute Force Protection)
+## fail2ban (Brute Force Protection)
 
 To install:
 ```bash
@@ -239,7 +239,7 @@ sudo sv restart fail2ban
 
 # Optional tweaks
 
-## 📂 Mounting NTFS Drives on Boot
+## Mounting NTFS Drives on Boot
 
 I have some NTFS drives that I keep my backups on. 
 
@@ -271,7 +271,7 @@ sudo ntfsfix -d /dev/sdxx
 
 ---
 
-## 💾 Configure Zram
+## Configure Zram
 Zram creates compressed swap space in RAM instead of using slow disk storage. It's much faster than traditional swap and doesn't use your SSD/HDD.
 
 To install zram:
