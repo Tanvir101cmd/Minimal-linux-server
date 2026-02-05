@@ -149,13 +149,13 @@ Another thing about tailscale is that Tailscale security keys (Node Keys) for us
 
 To prevent lockouts:
 
-1️⃣ Log into the [Tailscale Admin Console](https://login.tailscale.com/admin/machines) on your local machine.
+- Log into the [Tailscale Admin Console](https://login.tailscale.com/admin/machines) on your local machine.
 
-2️⃣ Navigate to the Machines tab.
+- Navigate to the Machines tab.
 
-3️⃣ Find your newly connected server.
+- Find your newly connected server.
 
-4️⃣ Click on your server and select Disable Key Expiry.
+- Click on your server and select Disable Key Expiry.
 
 If your key does expire, you must use a non-Tailscale connection (like a local LAN IP) to run 
 ```sudo tailscale up --force-reauth ``` and re-authenticate.
